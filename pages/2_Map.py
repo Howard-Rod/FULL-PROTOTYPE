@@ -9,6 +9,11 @@ import os
 #openai.api_key = st.secrets["openai_key"]
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
+# 🔒 Check global consent at page load
+if "consent_given" not in st.session_state or not st.session_state.consent_given:
+    st.error("❌ Consent is required to use this app. Please return to the homepage.")
+    st.stop()
+
 st.set_page_config(
     page_title="Water Access Support",
     layout="wide",
